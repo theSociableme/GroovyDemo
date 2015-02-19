@@ -5,5 +5,9 @@ println file.exists()
 def slurper = new XmlSlurper();
 def gpx = slurper.parse(file)
 
-println gpx
-
+println gpx.name
+println ''
+println gpx.desc
+println ''
+println gpx.@version
+println gpx.@creator
