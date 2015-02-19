@@ -11,3 +11,9 @@ println gpx.desc
 println ''
 println gpx.@version
 println gpx.@creator
+
+gpx.rte.rtept.each({
+    println it.@lat
+    println it.@lon
+    println it.time
+})
