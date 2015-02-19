@@ -1,3 +1,11 @@
+@Grapes(
+        @Grab(group='joda-time', module='joda-time', version='2.7')
+)
+
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
+
+
 def file = new File('../data/fells_loop.gpx')
 
 println file.exists()
@@ -15,5 +23,8 @@ println gpx.@creator
 gpx.rte.rtept.each({
     println it.@lat
     println it.@lon
-    println it.time
+
+    def printableTime = new DateTime(it.time.toString())
+    def format = DateTimeFormat.forPattern('MM/dd/yyyy - hh:mm aa')
+    println printableTime.toString(format)
 })
