@@ -11,4 +11,8 @@ class BankAccount {
     def void deposit(amount){
         balance += amount
     }
+
+    def void withdraw(amount){
+        balance -= amount
+    }
 }
