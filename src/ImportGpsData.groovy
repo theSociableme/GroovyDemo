@@ -22,7 +22,9 @@ gpx.with {
 }
 
 def forecastApi = new RESTClient('https://api.forecast.io/')
-def apiKey ='f106310bab9d2b16dfaa442bb6b380e7'
+def configsFile = new File('credentials.groovy')
+def configSlurper = new ConfigSlurper()
+def credentials = configSlurper.parse(configsFile.toURL())
 
 gpx.rte.rtept.each({
     println it.@lat
@@ -31,7 +33,7 @@ gpx.rte.rtept.each({
     def parser = new DateParser()
     println parser.parse(it.time.toString())
 
-    def queryString = "forecast/$apiKey/${it.@lat},${it.@lon},${it.time}"
+    def queryString = "forecast/$credentials.apiKey/${it.@lat},${it.@lon},${it.time}"
     def response = forecastApi.get(path: queryString)
 
     println response.data.currently.summary
